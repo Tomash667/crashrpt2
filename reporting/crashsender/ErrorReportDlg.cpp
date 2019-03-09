@@ -110,7 +110,7 @@ LRESULT CErrorReportDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /
     // Init font for consent string.
     LOGFONT lf;
     memset(&lf, 0, sizeof(LOGFONT));
-    lf.lfHeight = 11;
+    lf.lfHeight = 13;
     lf.lfWeight = FW_NORMAL;
     lf.lfQuality = ANTIALIASED_QUALITY;
     _TCSCPY_S(lf.lfFaceName, 32, _T("Tahoma"));
@@ -182,6 +182,8 @@ LRESULT CErrorReportDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /
 
 	// By default, hide the email & description fields.
 	// But user may override the default.
+    if(pCI->m_bShowAdditionalInfoFields)
+        m_linkMoreInfo.ShowWindow(SW_HIDE);
 	ShowMoreInfo(pCI->m_bShowAdditionalInfoFields);
 
 	// Create progress dialog
@@ -285,7 +287,7 @@ LRESULT CErrorReportDlg::OnCtlColorStatic(UINT /*uMsg*/, WPARAM wParam, LPARAM l
         //brush.CreateSolidBrush(cr);
 
         //SelectObject(hdcStatic, brush);
-        SetTextColor(hdcStatic, RGB(255, 0, 0));
+        //SetTextColor(hdcStatic, RGB(255, 0, 0));
         SetBkColor(hdcStatic, cr);
         SetDCBrushColor(hdcStatic, cr);
         return (LRESULT)CreateSolidBrush(cr);

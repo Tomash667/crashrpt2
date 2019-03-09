@@ -287,6 +287,7 @@ public:
 	HWND        m_hWndVideoParent;      // Video recording dialog parent.
 	BOOL        m_bClientAppCrashed;    // If TRUE, the client app has crashed; otherwise the client app exited successfully.
 	BOOL        m_bQueueEnabled;        // Can reports be sent later or not (queue enabled)?
+    BOOL        m_emailValidation;      // Validate email.
 	// Below are exception information fields.
     DWORD       m_dwProcessId;          // Parent process ID (used for minidump generation).
     DWORD       m_dwThreadId;           // Parent thread ID (used for minidump generation).

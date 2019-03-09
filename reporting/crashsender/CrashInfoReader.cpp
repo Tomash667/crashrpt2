@@ -575,6 +575,7 @@ int CCrashInfoReader::UnpackCrashDescription(CErrorReportInfo& eri)
     m_DesiredFrameSize = m_pCrashDesc->m_DesiredFrameSize;
 	m_hWndVideoParent = m_pCrashDesc->m_hWndVideoParent;
 	m_bClientAppCrashed = m_pCrashDesc->m_bClientAppCrashed;
+    m_emailValidation = (dwInstallFlags&CR_INST_NO_EMAIL_VALIDATION) == 0;
 
     DWORD dwOffs = m_pCrashDesc->m_wSize;
     while(dwOffs<m_pCrashDesc->m_dwTotalSize)
@@ -1051,7 +1052,8 @@ BOOL CCrashInfoReader::UpdateUserInfo(CString sEmail, CString sDesc)
     // it [1] contains a @ and [2] the last . comes
     // after the @.
 
-    if (sEmail.GetLength()!=0 &&
+    if (m_emailValidation &&
+        sEmail.GetLength()!=0 &&
         (sEmail.Find(_T('@')) < 0 ||
         sEmail.ReverseFind(_T('.')) <
         sEmail.Find(_T('@'))))

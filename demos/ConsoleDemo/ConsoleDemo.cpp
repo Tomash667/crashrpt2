@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
     info.pszAppVersion = _T("1.0.0");              // App version
     info.pszEmailSubject = _T("CrashRpt Console Test 1.0.0 Error Report"); // Email subject
     info.pszEmailTo = _T("test@hotmail.com");      // Email recipient address
+    info.dwFlags = CR_INST_ALL_POSSIBLE_HANDLERS | CR_INST_SHOW_ADDITIONAL_INFO_FIELDS | CR_INST_NO_EMAIL_VALIDATION;
 
     // Install crash handlers
     int nInstResult = crInstall(&info);            
